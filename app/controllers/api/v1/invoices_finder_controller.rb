@@ -29,7 +29,7 @@ class Api::V1::InvoicesFinderController < Api::ApiController
 
   def find_all
     if params[:id]
-      respond_with Invoice.find(params[:id])
+      respond_with Invoice.where(id: params[:id])
     elsif params[:customer_id]
       respond_with Invoice.where('(customer_id) = ?', params[:customer_id])
     elsif params[:merchant_id]

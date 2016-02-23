@@ -34,7 +34,7 @@ class Api::V1::TransactionsFinderController < Api::ApiController
 
   def find_all
     if params[:id]
-      respond_with Transaction.find(params[:id])
+      respond_with Transaction.where(id: params[:id])
     elsif params[:result]
       respond_with Transaction.where('LOWER(result) = ?', params[:result].downcase)
     elsif params[:credit_card_number]
