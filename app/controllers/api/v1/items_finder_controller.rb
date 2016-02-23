@@ -29,7 +29,7 @@ class Api::V1::ItemsFinderController < Api::ApiController
 
   def find_all
     if params[:id]
-      respond_with Item.find(params[:id])
+      respond_with Item.where(id: params[:id])
     elsif params[:name]
       respond_with Item.where('LOWER(name) = ?', params[:name].downcase)
     elsif params[:unit_price]

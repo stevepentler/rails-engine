@@ -25,7 +25,7 @@ class Api::V1::MerchantFinderController < Api::ApiController
 
   def find_all
     if params[:id]
-      respond_with Merchant.find(id: params[:id])
+      respond_with Merchant.where(id: params[:id])
     elsif params[:name]
       respond_with Merchant.where('LOWER(name) = ?', params[:name].downcase)
     elsif params[:created_at]
