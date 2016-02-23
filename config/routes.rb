@@ -5,6 +5,8 @@ Rails.application.routes.draw do
       get '/customers/find', to: 'customer_finder#show'
       get '/customers/find_all', to: 'customer_finder#index'
       resources :customers, only: [:index, :show]
+      get '/merchants/:id/invoices', to: 'merchant_invoices#index'
+      get '/merchants/:id/items', to: 'merchant_items#index'
       get '/merchants/random', to: 'merchant_random#show'
       get '/merchants/find', to: 'merchant_finder#show'
       get '/merchants/find_all', to: 'merchant_finder#index'
@@ -13,6 +15,11 @@ Rails.application.routes.draw do
       get '/items/find', to: 'items_finder#show'
       get '/items/find_all', to: 'items_finder#index'
       resources :items, only: [:index, :show]
+      get '/invoices/:id/transactions', to: 'invoice_transactions#index'
+      get '/invoices/:id/invoice_items', to: 'invoice_associated_invoice_items#index'
+      get '/invoices/:id/items', to: 'invoice_associated_items#index'
+      get '/invoices/:id/customer', to: 'invoice_customer#show'
+      get '/invoices/:id/merchant', to: 'invoice_merchant#show'
       get '/invoices/random', to: 'invoices_random#show'
       get '/invoices/find', to: 'invoices_finder#show'
       get '/invoices/find_all', to: 'invoices_finder#index'
