@@ -27,7 +27,7 @@ class Api::V1::CustomerFinderController < Api::ApiController
 
   def find_all
     if params[:id]
-      respond_with Customer.find(id: params[:id])
+      respond_with Customer.where(id: params[:id])
     elsif params[:first_name]
       respond_with Customer.where('LOWER(first_name) = ?', params[:first_name].downcase)
     elsif params[:last_name]
