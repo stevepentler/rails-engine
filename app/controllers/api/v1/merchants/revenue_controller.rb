@@ -4,7 +4,7 @@ class Api::V1::Merchants::RevenueController < Api::ApiController
   def show
     if params[:date]
     total_revenue = Merchant.find(params[:id]).invoices.joins(:transactions)
-                                                    .where("invoice.created_at = ?", params[:date])
+                                                    .where("invoices.created_at = ?", params[:date])
                                                     .where("transactions.result = ?", "success")
                                                     .joins(:invoice_items)
                                                     .sum("unit_price * quantity")
