@@ -20,12 +20,13 @@ Rails.application.routes.draw do
       end
       resources :customers, only: [:index, :show]
 
-
-      get '/merchants/:id/invoices', to: 'merchant_invoices#index'
-      get '/merchants/:id/items', to: 'merchant_items#index'
-      get '/merchants/random', to: 'merchant_random#show'
-      get '/merchants/find', to: 'merchant_finder#show'
-      get '/merchants/find_all', to: 'merchant_finder#index'
+      namespace :merchants do 
+        get '/:id/invoices', to: 'invoices#index'
+        get '/:id/items', to: 'items#index'
+        get '/random', to: 'random#show'
+        get '/find', to: 'finder#show'
+        get '/find_all', to: 'finder#index'
+      end
       resources :merchants, only: [:index, :show]
       
       namespace :items do 
