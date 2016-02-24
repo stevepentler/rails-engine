@@ -1,4 +1,4 @@
-class Api::V1::TransactionsFinderController < Api::ApiController
+class Api::V1::Transactions::FinderController < Api::ApiController
   respond_to :json
 
   def index

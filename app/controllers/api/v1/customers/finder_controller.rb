@@ -1,4 +1,4 @@
-class Api::V1::CustomerFinderController < Api::ApiController
+class Api::V1::Customers::FinderController < Api::ApiController
   respond_to :json
 
   def index
