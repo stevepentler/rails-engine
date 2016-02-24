@@ -30,10 +30,6 @@
       InvoiceItem.create!(row.to_h)
     end
 
-    # file = "vendor/assets/data/transactions.csv"
-    # CSV.foreach(file, :headers => true) do |row|
-    #   Transaction.create!(row.to_h)
-    # end
     file = 'vendor/assets/data/transactions.csv'
       CSV.foreach(transactions_file, :headers =>true) do |row|
         Transaction.create!(id: row["id"],
