@@ -1,4 +1,4 @@
-class Api::V1::InvoiceCustomerController < Api::ApiController
+class Api::V1::Invoices::CustomerController < Api::ApiController
   respond_to :json
 
   def show

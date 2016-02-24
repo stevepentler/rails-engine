@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1, defaults: {format: :json} do
 
-      # resources :customers, only: [:show, :index] do 
+            # resources :customers, only: [:show, :index] do 
       #   collection do 
       #     get '/:id/invoices', to: 'invoices#index'
       #     get '/:id/transactions', to: 'transactions#index'
@@ -33,15 +33,19 @@ Rails.application.routes.draw do
       get '/items/find', to: 'items_finder#show'
       get '/items/find_all', to: 'items_finder#index'
       resources :items, only: [:index, :show]
-      get '/invoices/:id/transactions', to: 'invoice_transactions#index'
-      get '/invoices/:id/invoice_items', to: 'invoice_associated_invoice_items#index'
-      get '/invoices/:id/items', to: 'invoice_associated_items#index'
-      get '/invoices/:id/customer', to: 'invoice_customer#show'
-      get '/invoices/:id/merchant', to: 'invoice_merchant#show'
-      get '/invoices/random', to: 'invoices_random#show'
-      get '/invoices/find', to: 'invoices_finder#show'
-      get '/invoices/find_all', to: 'invoices_finder#index'
-      resources :invoices, only: [:index, :show]
+     
+      namespace :invoices do 
+        get '/:id/transactions', to: 'transactions#index'
+        get '/:id/invoice_items', to: 'invoice_items#index'
+        get '/:id/items', to: 'items#index'
+        get '/:id/customer', to: 'customer#show'
+        get '/:id/merchant', to: 'merchant#show'
+        get '/random', to: 'random#show'
+        get '/find', to: 'finder#show'
+        get '/find_all', to: 'finder#index'
+      end
+        resources :invoices, only: [:index, :show]
+
       get '/invoice_items/:id/invoice', to: 'invoice_items_invoice#show'
       get '/invoice_items/:id/item', to: 'invoice_items_item#show'
       get '/invoice_items/random', to: 'invoice_items_random#show'
