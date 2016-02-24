@@ -96,7 +96,6 @@ class Api::V1::Invoices::FinderControllerTest < ActionController::TestCase
 
 
 
-
   test "#index find id" do 
     invoice1, invoice2 = create_list(:invoice, 2)
     get :index, format: :json, id: invoice1.id
