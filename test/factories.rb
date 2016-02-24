@@ -21,16 +21,16 @@ FactoryGirl.define do
     updated_at "2016-02-24T03:06:12.449Z"
   end
 
-  factory :items do 
+  factory :item do 
     merchant
-    name {Faker::StarWars.droid}
-    description {Faker::StarWars.quote}
+    name {Faker::Hacker.noun}
+    description {Faker::Hacker.adjective}
     unit_price "127.05"
     created_at "2016-02-15T03:06:12.449Z"
     updated_at "2016-02-24T03:06:12.449Z"
   end
 
-  factory :invoice_items do 
+  factory :invoice_item do 
     item
     invoice
     quantity {Faker::Number.between(1, 10)}
@@ -39,7 +39,7 @@ FactoryGirl.define do
     updated_at "2016-02-24T03:06:12.449Z"
   end
 
-  factory :transactions do 
+  factory :transaction do 
     invoice
     credit_card_number "4654405418249632"
     result "success"

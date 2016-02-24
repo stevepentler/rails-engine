@@ -181,6 +181,4 @@ class Api::V1::Customers::FinderControllerTest < ActionController::TestCase
     assert_equal customer_2.last_name, customers.last["last_name"]
     assert_equal customer_2.updated_at, customers.last["updated_at"]
   end
-
-
 end
