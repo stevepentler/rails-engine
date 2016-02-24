@@ -6,7 +6,7 @@ class Api::V1::Invoices::ItemsControllerTest < ActionController::TestCase
     
     get :index, format: :json, id: invoice.id
 
-    invoices = JSON.parse(response.body)
+    items = JSON.parse(response.body)
 
     assert_response :success
   end

@@ -6,7 +6,7 @@ class Api::V1::Invoices::MerchantControllerTest < ActionController::TestCase
     
     get :show, format: :json, id: invoice.id
 
-    invoices = JSON.parse(response.body)
+    merchant = JSON.parse(response.body)
 
     assert_response :success
   end

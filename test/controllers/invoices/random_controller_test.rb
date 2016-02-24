@@ -6,7 +6,7 @@ class Api::V1::Invoices::RandomControllerTest < ActionController::TestCase
     
     get :show, format: :json, id: invoice.id
 
-    invoices = JSON.parse(response.body)
+    random = JSON.parse(response.body)
 
     assert_response :success
   end
