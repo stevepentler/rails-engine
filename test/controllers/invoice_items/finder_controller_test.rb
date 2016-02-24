@@ -97,17 +97,14 @@ class Api::V1::InvoiceItems::FinderControllerTest < ActionController::TestCase
 
   test "#index find item_id" do 
     invoice_item1, invoice_item2 = create_list(:invoice_item, 2)
-    invoice_item2.update(item_id: invoice_item1.id)
     get :index, format: :json, item_id: invoice_item1.item_id
 
     invoice_items = JSON.parse(response.body)
 
     assert_response :success
-    assert_equal 2, invoice_items.count
+    assert_equal 1, invoice_items.count
     assert_equal invoice_item1.id, invoice_items.first["id"]
     assert_equal invoice_item1.item_id, invoice_items.first["item_id"]
-    assert_equal invoice_item2.id, invoice_items.last["id"]
-    assert_equal invoice_item2.item_id, invoice_items.last["item_id"]
   end
 
   test "#index find invoice_id" do 
