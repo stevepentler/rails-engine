@@ -29,11 +29,11 @@ class Api::V1::Merchants::PendingCustomersControllerTest < ActionController::Tes
     assert_response :success
 
     assert_equal 2, result.count
-    assert_equal customer1.id, result.first["id"]
-    assert_equal customer1.first_name, result.first["first_name"]
-    assert_equal customer1.last_name, result.first["last_name"]
-    assert_equal customer2.id, result.last["id"]
-    assert_equal customer2.first_name, result.last["first_name"]
-    assert_equal customer2.last_name, result.last["last_name"]
+    assert_equal customer2.id, result.first["id"]
+    assert_equal customer2.first_name, result.first["first_name"]
+    assert_equal customer2.last_name, result.first["last_name"]
+    assert_equal customer1.id, result.last["id"]
+    assert_equal customer1.first_name, result.last["first_name"]
+    assert_equal customer1.last_name, result.last["last_name"]
   end
 end
