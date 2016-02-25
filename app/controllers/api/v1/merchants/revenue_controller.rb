@@ -3,28 +3,9 @@ class Api::V1::Merchants::RevenueController < Api::ApiController
 
   def show
     if params[:date]             
-      respond_with({revenue: total_revenue_by_date})
+      respond_with({revenue: Merchant.total_revenue_by_date(params)})
     else            
-      respond_with({revenue: total_revenue})
+      respond_with({revenue: Merchant.total_revenue(params)})
     end
   end
-
-  private
-
-    def total_revenue_by_date
-      Merchant.find(params[:id]).invoices
-                                .joins(:transactions)
-                                .where("invoices.created_at = ?", params[:date])
-                                .where("transactions.result = ?", "success")
-                                .joins(:invoice_items)
-                                .sum("unit_price * quantity")
-    end
-
-    def total_revenue
-      Merchant.find(params[:id]).invoices
-                                .joins(:transactions)
-                                .where("transactions.result = ?", "success")
-                                .joins(:invoice_items)
-                                .sum("unit_price * quantity")
-    end
 end
