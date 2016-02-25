@@ -2,6 +2,12 @@ class Api::V1::Items::MostItemsController < Api::ApiController
   respond_to :json
 
   def index
+    respond_with top_results
+  end
+  
+  private
+
+  def top_results
     quantity = params["quantity"].to_i
     result = Invoice.all
              .joins(:transactions)
@@ -14,7 +20,5 @@ class Api::V1::Items::MostItemsController < Api::ApiController
     top_results = result.map do |item_id, total_sold|
       Item.find(item_id)
     end.take(quantity)
-
-    respond_with top_results
   end
 end
