@@ -3,21 +3,14 @@ class Api::V1::Customers::FinderController < Api::ApiController
 
   def show
     customers = Customer.where(customer_params)
-    unless customer_name_params.empty?
-      respond_with customers.find_by(build_query)
-    else
-      respond_with customers.first
-    end
+    respond_with customers.find_by(build_query)
   end
 
   def index
     customers = Customer.where(customer_params)
-    unless customer_name_params.empty?
-      respond_with customers.where(build_query)
-    else
-      respond_with customers
-    end
+    respond_with customers.where(build_query)
   end
+
 
   private
 
