@@ -4,7 +4,5 @@ class Api::V1::Customers::FavoriteMerchantController < Api::ApiController
   def show
     respond_with Merchant.find(Customer.favorite_merchant(params))
   end
-
-  private 
   
 end

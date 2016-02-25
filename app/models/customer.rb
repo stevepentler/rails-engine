@@ -23,4 +23,5 @@ class Customer < ActiveRecord::Base
                      .count
                      .max_by{|k,v| v}.first
   end
+
 end
