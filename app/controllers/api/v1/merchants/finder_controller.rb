@@ -3,20 +3,12 @@ class Api::V1::Merchants::FinderController < Api::ApiController
 
   def show
     merchants = Merchant.where(merchant_params)
-    unless merchant_name_params.empty?
-      respond_with merchants.find_by(build_query)
-    else
-      respond_with merchants.first
-    end
+    respond_with merchants.find_by(build_query)
   end
 
   def index
     merchants = Merchant.where(merchant_params)
-    unless merchant_name_params.empty?
-      respond_with merchants.where(build_query)
-    else
-      respond_with merchants
-    end
+    respond_with merchants.where(build_query)
   end
 
   private 
