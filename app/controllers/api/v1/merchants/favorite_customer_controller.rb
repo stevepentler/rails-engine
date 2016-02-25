@@ -9,7 +9,7 @@ class Api::V1::Merchants::FavoriteCustomerController < Api::ApiController
 
   def favorite_customer
     merchant = Merchant.find(params[:id])
-    cusotmer_id= merchant.invoices.joins(:transactions)
+    customer_id = merchant.invoices.joins(:transactions)
                      .where("result = 'success'") 
                      .group(:customer_id)
                      .count
