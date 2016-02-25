@@ -31,7 +31,7 @@
     end
 
     file = 'vendor/assets/data/transactions.csv'
-      CSV.foreach(transactions_file, :headers =>true) do |row|
+      CSV.foreach(file, :headers =>true) do |row|
         Transaction.create!(id: row["id"],
           invoice_id: row["invoice_id"],
           credit_card_number: row["credit_card_number"],
