@@ -131,72 +131,62 @@ class Api::V1::Invoices::FinderControllerTest < ActionController::TestCase
 
   end
 
-  # test "#index find uppercase first_name" do 
-  #   invoice1, invoice2 = create_list(:invoice, 2)
-  #   invoice2 = Invoice.create(first_name: invoice1.first_name)
-  #   get :index, format: :json, first_name: invoice1.first_name.upcase
+  test "#index find status" do 
+    invoice1, invoice2 = create_list(:invoice, 2)
+    invoice3 = Invoice.create(status: "failure")
+    get :index, format: :json, status: invoice1.status
 
-  #   invoices = JSON.parse(response.body)
+    invoices = JSON.parse(response.body)
 
-  #   assert_response :success
-  #   assert_equal 2, invoices.count
-  #   assert_equal invoice1.first_name, invoices.first["first_name"]
-  #   assert_equal invoice2.first_name, invoices.last["first_name"]
-  # end
+    assert_response :success
+    assert_equal 2, invoices.count
+    assert_equal invoice1.status, invoices.first["status"]
+    assert_equal invoice2.status, invoices.last["status"]
+  end
 
-  # test "#index find lowercase last_name" do 
-  #   invoice1, invoice2 = create_list(:invoice, 2)
-  #   invoice2 = Invoice.create(last_name: invoice1.last_name)
-  #   get :index, format: :json, last_name: invoice1.last_name.downcase
+  test "#index find uppercase merchant_id" do 
+    merchant = create(:merchant)
+    invoice1 = Invoice.create(merchant_id: merchant.id)
+    invoice2 = Invoice.create(merchant_id: merchant.id)
+    invoice3 = create(:invoice)
+    
+    get :index, format: :json, merchant_id: invoice1.merchant_id  
 
-  #   invoices = JSON.parse(response.body)
+    invoices = JSON.parse(response.body)
 
-  #   assert_response :success
-  #   assert_equal 2, invoices.count
-  #   assert_equal invoice1.last_name, invoices.first["last_name"]
-  #   assert_equal invoice2.last_name, invoices.last["last_name"]
-  # end
+    assert_response :success
+    assert_equal 2, invoices.count
+    assert_equal invoice1.merchant_id, invoices.first["merchant_id"]
+    assert_equal invoice2.merchant_id, invoices.last["merchant_id"]
+  end
 
-  # test "#index find uppercase last_name" do 
-  #   invoice1, invoice2 = create_list(:invoice, 2)
-  #   invoice2 = Invoice.create(last_name: invoice1.last_name)
-  #   get :index, format: :json, last_name: invoice1.last_name.upcase
+  test "#index find created_at" do 
+    invoice1, invoice2 = create_list(:invoice, 2)
+    get :index, format: :json, created_at: invoice1.created_at
 
-  #   invoices = JSON.parse(response.body)
+    invoices = JSON.parse(response.body)
 
-  #   assert_response :success
-  #   assert_equal 2, invoices.count
-  #   assert_equal invoice1.last_name, invoices.first["last_name"]
-  #   assert_equal invoice2.last_name, invoices.last["last_name"]
-  # end
+    assert_response :success
+    assert_equal 2, invoices.count
+    assert_equal invoice1.created_at, invoices.first["created_at"]
+    assert_equal invoice2.created_at, invoices.last["created_at"]
+    assert_equal invoice1.customer_id, invoices.first["customer_id"]
+    assert_equal invoice2.customer_id, invoices.last["customer_id"]
+  end
 
-  # test "#index find created_at" do 
-  #   invoice1, invoice2 = create_list(:invoice, 2)
-  #   get :index, format: :json, created_at: invoice1.created_at
+  test "#index find updated_at" do 
+    invoice1, invoice2 = create_list(:invoice, 2)
+    get :index, format: :json, updated_at: invoice1.updated_at
 
-  #   invoices = JSON.parse(response.body)
+    invoices = JSON.parse(response.body)
 
-  #   assert_response :success
-  #   assert_equal 2, invoices.count
-  #   assert_equal invoice1.created_at, invoices.first["created_at"]
-  #   assert_equal invoice2.created_at, invoices.last["created_at"]
-  #   assert_equal invoice1.first_name, invoices.first["first_name"]
-  #   assert_equal invoice2.first_name, invoices.last["first_name"]
-  # end
-
-  # test "#index find updated_at" do 
-  #   invoice1, invoice2 = create_list(:invoice, 2)
-  #   get :index, format: :json, updated_at: invoice1.updated_at
-
-  #   invoices = JSON.parse(response.body)
-
-  #   assert_response :success
-  #   assert_equal 2, invoices.count
-  #   assert_equal invoice1.first_name, invoices.first["first_name"]
-  #   assert_equal invoice1.last_name, invoices.first["last_name"]
-  #   assert_equal invoice1.updated_at, invoices.first["updated_at"]
-  #   assert_equal invoice2.first_name, invoices.last["first_name"]
-  #   assert_equal invoice2.last_name, invoices.last["last_name"]
-  #   assert_equal invoice2.updated_at, invoices.last["updated_at"]
-  # end
+    assert_response :success
+    assert_equal 2, invoices.count
+    assert_equal invoice1.customer_id, invoices.first["customer_id"]
+    assert_equal invoice1.merchant_id, invoices.first["merchant_id"]
+    assert_equal invoice1.updated_at, invoices.first["updated_at"]
+    assert_equal invoice2.customer_id, invoices.last["customer_id"]
+    assert_equal invoice2.merchant_id, invoices.last["merchant_id"]
+    assert_equal invoice2.updated_at, invoices.last["updated_at"]
+  end
 end

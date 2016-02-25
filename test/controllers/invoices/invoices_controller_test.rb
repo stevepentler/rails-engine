@@ -25,5 +25,8 @@ class Api::V1::InvoicesControllerTest < ActionController::TestCase
 
     assert_response :success
     assert_equal invoice1.id, invoice["id"]
+    assert_equal invoice1.customer_id, invoice["customer_id"]
+    assert_equal invoice1.merchant_id, invoice["merchant_id"]
+    assert_equal invoice1.status, invoice["status"]
   end
 end
