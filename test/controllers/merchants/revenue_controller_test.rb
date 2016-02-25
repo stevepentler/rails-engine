@@ -3,7 +3,6 @@ require 'test_helper'
 class Api::V1::Merchants::RevenueControllerTest < ActionController::TestCase
 
   test "#show revenue for merchant" do
-    time = Time.now
     customer = create(:customer)
     merchant= create(:merchant)
 
