@@ -28,14 +28,3 @@ class Api::V1::Merchants::RevenueController < Api::ApiController
                                 .sum("unit_price * quantity")
     end
 end
-
-  # def show
-  #   revenue = 0 
-  #   successful_invoices = Merchant.find(params[:id]).invoices.joins(:transactions).where("result = 'success'")
-  #   successful_invoices.map do |invoice|
-  #     invoice.invoice_items.map do |invoice_item|
-  #       revenue += invoice_item.quantity * invoice_item.unit_price.to_f
-  #     end
-  #   end
-  #   respond_with revenue
-  # end
