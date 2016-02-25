@@ -2,7 +2,7 @@ class Customer < ActiveRecord::Base
   has_many :invoices
   has_many :transactions, through: :invoices
 
-  def pending_customers(params)
+  def self.pending_customers(params)
     customers = Merchant.find(params[:id])
                     .invoices
                     .joins(:transactions)
@@ -15,11 +15,11 @@ class Customer < ActiveRecord::Base
     end
   end
 
-  def favorite_customer(params)
-    merchant = Merchant.find(params[:id])
-    customer_id = merchant.invoices.joins(:transactions)
+  def self.favorite_merchant(params)
+    customer = Customer.find(params[:id])
+    merchant_id = customer.invoices.joins(:transactions)
                      .where("result = 'success'") 
-                     .group(:customer_id)
+                     .group(:merchant_id)
                      .count
                      .max_by{|k,v| v}.first
   end
