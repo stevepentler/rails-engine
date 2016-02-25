@@ -11,7 +11,7 @@ class Api::V1::Merchants::RevenueController < Api::ApiController
 
   private
 
-    def total_revenue_by_date 
+    def total_revenue_by_date
       Merchant.find(params[:id]).invoices
                                 .joins(:transactions)
                                 .where("invoices.created_at = ?", params[:date])
