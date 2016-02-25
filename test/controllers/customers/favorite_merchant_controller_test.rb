@@ -6,13 +6,13 @@ class Api::V1::Customers::FavoriteMerchantControllerTest < ActionController::Tes
     customer = create(:customer)
     merchant1, merchant2 = create_list(:merchant, 2)
 
-      merchant1_invoice = Invoice.create(customer_id: customer.id, 
-                               merchant_id: merchant1.id, 
-                               status: "shipped")
+    merchant1_invoice = Invoice.create(customer_id: customer.id, 
+                             merchant_id: merchant1.id, 
+                             status: "shipped")
 
-      merchant2_invoice = Invoice.create(customer_id: customer.id, 
-                           merchant_id: merchant2.id, 
-                           status: "shipped")
+    merchant2_invoice = Invoice.create(customer_id: customer.id, 
+                         merchant_id: merchant2.id, 
+                         status: "shipped")
 
     5.times do 
         transaction = Transaction.create(invoice_id: merchant1_invoice.id, result: "success")
