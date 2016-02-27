@@ -17,7 +17,8 @@ class Customer < ActiveRecord::Base
 
   def self.favorite_merchant(params)
     customer = Customer.find(params[:id])
-    merchant_id = customer.invoices.joins(:transactions)
+    merchant_id = customer.invoices
+                     .joins(:transactions)
                      .where("result = 'success'") 
                      .group(:merchant_id)
                      .count
